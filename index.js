@@ -8,11 +8,11 @@ const server = http.createServer((req, res) => {
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
+    origin: ["https://clinquant-starship-1a247b.netlify.app", "http://localhost:5173"],
+    methods: ["GET", "POST"],
+    credentials: true
   },
-  // Ensure polling is enabled as WebSockets might be blocked on serverless
-  transports: ["polling", "websocket"] 
+  allowEIO3: true // Support older clients if any
 });
 
 io.on("connection", (socket) => {
